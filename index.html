@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biopsias Privadas — Dra. Alejandra Wernicke</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════
+   VARIABLES & RESET
+══════════════════════════════════════════════════ */
+:root {
+  --navy:    #0f2441;
+  --navy2:   #1a3660;
+  --navy3:   #234a82;
+  --gold:    #b89c6e;
+  --gold2:   #d4b98a;
+  --cream:   #faf8f4;
+  --white:   #ffffff;
+  --gray50:  #f8fafc;
+  --gray100: #f1f4f9;
+  --gray200: #dde4f0;
+  --gray300: #b8c4d8;
+  --gray500: #6b7a99;
+  --gray700: #374260;
+  --red:     #991b1b;
+  --green:   #14532d;
+  --amber:   #78350f;
+  --shadow:  0 1px 12px rgba(15,36,65,.08);
+  --shadow2: 0 4px 32px rgba(15,36,65,.13);
+  --shadow3: 0 8px 60px rgba(15,36,65,.18);
+  --radius:  10px;
+  --font-serif: 'EB Garamond', Georgia, serif;
+  --font-sans:  'Jost', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--cream);
+  color: var(--navy);
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.5;
+}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--gray100); }
+::-webkit-scrollbar-thumb { background: var(--gray300); border-radius: 3px; }
+
+/* ══════════════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════════════ */
+.app-header {
+  background: var(--navy);
+  position: sticky; top: 0; z-index: 200;
+  box-shadow: 0 2px 20px rgba(0,0,0,.25);
+}
+.header-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 0 28px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px;
+}
+.header-brand { display: flex; align-items: center; gap: 14px; }
+.monogram {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 17px; font-weight: 700;
+  color: var(--navy);
+  flex-shrink: 0;
+  letter-spacing: -1px;
+  box-shadow: 0 2px 8px rgba(184,156,110,.4);
+}
+.brand-text { display: flex; flex-direction: column; }
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 16px; font-weight: 600;
+  color: var(--white); letter-spacing: .2px;
+}
+.brand-sub {
+  font-size: 10px; font-weight: 400;
+  color: rgba(255,255,255,.55);
+  letter-spacing: 1.2px; text-transform: uppercase;
+}
+.header-right { display: flex; align-items: center; gap: 16px; }
+.next-num {
+  text-align: right;
+  border-left: 2px solid var(--navy3);
+  padding-left: 14px;
+}
+.next-num small {
+  display: block; font-size: 9px; font-weight: 600;
+  color: rgba(255,255,255,.4); text-transform: uppercase;
+  letter-spacing: 1.2px; margin-bottom: 1px;
+}
+.next-num span {
+  font-family: var(--font-serif);
+  font-size: 20px; font-weight: 600;
+  color: var(--gold); letter-spacing: .5px;
+}
+
+/* ══════════════════════════════════════════════════
+   NAV TABS
+══════════════════════════════════════════════════ */
+.nav-bar {
+  background: var(--navy2);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.nav-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 0 28px;
+  display: flex; gap: 0; overflow-x: auto;
+}
+.tab-btn {
+  background: none; border: none;
+  color: rgba(255,255,255,.45);
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 600;
+  padding: 13px 20px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color .18s, border-color .18s;
+  letter-spacing: .8px; text-transform: uppercase;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: rgba(255,255,255,.8); }
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* ══════════════════════════════════════════════════
+   MAIN LAYOUT
+══════════════════════════════════════════════════ */
+.main { max-width: 1280px; margin: 0 auto; padding: 28px; }
+.panel { display: none; }
+.panel.active { display: block; }
+.panel-anim { animation: fadeUp .22s ease; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+/* ══════════════════════════════════════════════════
+   CARDS
+══════════════════════════════════════════════════ */
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray200);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.card-header {
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy2) 100%);
+  padding: 14px 24px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.card-header h2 {
+  font-family: var(--font-serif);
+  font-size: 18px; font-weight: 600;
+  color: var(--white); letter-spacing: .2px;
+}
+.card-header .pill {
+  background: rgba(255,255,255,.15);
+  color: rgba(255,255,255,.9);
+  font-size: 10px; font-weight: 600;
+  padding: 2px 10px; border-radius: 20px;
+  letter-spacing: .8px; text-transform: uppercase;
+}
+.card-header .ml { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.card-body { padding: 24px; }
+
+/* ══════════════════════════════════════════════════
+   FORM ELEMENTS
+══════════════════════════════════════════════════ */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-grid.g3 { grid-template-columns: 1fr 1fr 1fr; }
+.form-grid.g4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.fg { display: flex; flex-direction: column; gap: 5px; }
+.fg.full { grid-column: 1 / -1; }
+.fg label {
+  font-size: 10px; font-weight: 600;
+  color: var(--gray500);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.fg input, .fg select, .fg textarea {
+  background: var(--gray50);
+  border: 1.5px solid var(--gray200);
+  border-radius: 7px;
+  padding: 9px 13px;
+  font-family: var(--font-sans); font-size: 14px;
+  color: var(--navy);
+  transition: border-color .18s, box-shadow .18s;
+  width: 100%;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+  outline: none;
+  border-color: var(--navy3);
+  box-shadow: 0 0 0 3px rgba(35,74,130,.1);
+  background: var(--white);
+}
+.fg input::placeholder, .fg textarea::placeholder { color: var(--gray300); }
+.fg select {
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7a99' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+  padding-right: 34px;
+}
+.fg textarea { resize: vertical; min-height: 88px; line-height: 1.6; }
+
+
+/* Section label */
+.sec-label {
+  font-family: var(--font-serif);
+  font-size: 14px; font-weight: 600; font-style: italic;
+  color: var(--navy);
+  margin: 22px 0 12px;
+  padding-bottom: 7px;
+  border-bottom: 1.5px solid var(--gray200);
+  display: flex; align-items: center; gap: 10px;
+}
+.sec-label::before {
+  content: '';
+  width: 3px; height: 14px;
+  background: var(--gold);
+  border-radius: 2px; flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px;
+  border-radius: 7px;
+  font-family: var(--font-sans); font-size: 12px; font-weight: 600;
+  cursor: pointer; border: none;
+  transition: all .18s;
+  letter-spacing: .5px; text-transform: uppercase;
+  white-space: nowrap;
+}
+.btn-navy {
+  background: var(--navy); color: var(--white);
+  box-shadow: 0 2px 8px rgba(15,36,65,.2);
+}
+.btn-navy:hover { background: var(--navy2); transform: translateY(-1px); }
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+  color: var(--navy); font-weight: 700;
+  box-shadow: 0 2px 10px rgba(184,156,110,.3);
+}
+.btn-gold:hover { box-shadow: 0 4px 18px rgba(184,156,110,.45); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent;
+  border: 1.5px solid var(--gray200);
+  color: var(--gray700);
+}
+.btn-ghost:hover { border-color: var(--navy3); color: var(--navy); background: var(--gray50); }
+.btn-outline-navy {
+  background: transparent;
+  border: 1.5px solid var(--navy);
+  color: var(--navy);
+}
+.btn-outline-navy:hover { background: var(--navy); color: var(--white); }
+.btn-sm { padding: 6px 12px; font-size: 11px; }
+.btn-danger { background: transparent; border: 1.5px solid rgba(153,27,27,.3); color: var(--red); padding: 5px 12px; font-size: 11px; }
+.btn-danger:hover { background: rgba(153,27,27,.08); }
+.btn-success { background: var(--green); color: var(--white); }
+.btn-success:hover { opacity: .9; }
+.btn-row { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+
+/* Edit indicator */
+.edit-badge {
+  display: none;
+  background: #fef3c7; color: var(--amber);
+  border: 1px solid #fcd34d;
+  font-size: 10px; font-weight: 700;
+  padding: 2px 10px; border-radius: 20px;
+  letter-spacing: .5px;
+}
+.edit-badge.show { display: inline-flex; align-items: center; gap: 4px; }
+
+/* ══════════════════════════════════════════════════
+   ESTADÍSTICAS
+══════════════════════════════════════════════════ */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--gray200);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: flex; align-items: center; gap: 14px;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s;
+}
+.stat-card:hover { box-shadow: var(--shadow2); }
+.stat-ico {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.ico-navy { background: rgba(15,36,65,.08); }
+.ico-gold { background: rgba(184,156,110,.15); }
+.ico-amber { background: #fef3c7; }
+.ico-green { background: #dcfce7; }
+.stat-val {
+  font-family: var(--font-serif);
+  font-size: 30px; font-weight: 700;
+  color: var(--navy); line-height: 1;
+}
+.stat-lbl {
+  font-size: 10px; font-weight: 600;
+  color: var(--gray500);
+  text-transform: uppercase; letter-spacing: .6px;
+  margin-top: 3px;
+}
+.stats-two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* ══════════════════════════════════════════════════
+   TABLA BIOPSIAS
+══════════════════════════════════════════════════ */
+.search-row {
+  display: flex; gap: 10px;
+  margin-bottom: 16px; flex-wrap: wrap; align-items: center;
+}
+.search-row input { flex: 1; min-width: 220px; }
+.bio-table-wrap { overflow-x: auto; }
+.bio-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 13px; min-width: 760px;
+}
+.bio-table thead tr { background: var(--navy); }
+.bio-table th {
+  color: var(--white);
+  padding: 10px 14px;
+  text-align: left; font-size: 10px; font-weight: 600;
+  letter-spacing: .8px; text-transform: uppercase;
+  white-space: nowrap;
+}
+.bio-table th:first-child { border-radius: 8px 0 0 8px; }
+.bio-table th:last-child  { border-radius: 0 8px 8px 0; }
+.bio-table tbody tr {
+  border-bottom: 1px solid var(--gray100);
+  transition: background .15s; cursor: pointer;
+}
+.bio-table tbody tr:last-child { border-bottom: none; }
+.bio-table tbody tr:hover { background: rgba(15,36,65,.04); }
+.bio-table td { padding: 10px 14px; vertical-align: middle; }
+.td-num { font-family: var(--font-serif); font-size: 15px; font-weight: 700; color: var(--navy); white-space: nowrap; }
+.td-pac { font-weight: 600; }
+.td-diag { color: var(--gray500); max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.td-diag:hover { white-space: normal; }
+.td-acc { text-align: right; white-space: nowrap; }
+mark { background: #fde68a; border-radius: 2px; padding: 0 2px; }
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 2px 9px; border-radius: 20px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .6px; text-transform: uppercase;
+}
+.badge-ok   { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.badge-pend { background: #fef3c7; color: var(--amber); border: 1px solid #fcd34d; }
+.badge-pap  { background: #fef3e2; border: 1px solid #fed7aa; color: #9a3412; }
+.empty-state { text-align: center; padding: 48px 20px; color: var(--gray300); }
+.empty-state .ei { font-size: 38px; margin-bottom: 10px; opacity: .5; }
+
+/* ══════════════════════════════════════════════════
+   HISTORIAL LIST
+══════════════════════════════════════════════════ */
+.rep-list { display: flex; flex-direction: column; gap: 6px; }
+.rep-item {
+  background: var(--white);
+  border: 1.5px solid var(--gray200);
+  border-radius: 9px;
+  padding: 12px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all .18s; cursor: pointer;
+}
+.rep-item:hover { border-color: var(--navy3); box-shadow: var(--shadow); }
+.rep-left { display: flex; align-items: center; gap: 14px; }
+.rep-num { font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--navy); min-width: 75px; }
+.rep-info h4 { font-size: 14px; font-weight: 600; color: var(--navy); }
+.rep-info p  { font-size: 11px; color: var(--gray500); margin-top: 2px; }
+.rep-right { display: flex; align-items: center; gap: 8px; }
+.filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.fpill {
+  padding: 6px 14px; border-radius: 20px;
+  border: 1.5px solid var(--gray200); background: var(--white);
+  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+  cursor: pointer; color: var(--gray500);
+  transition: all .18s; text-transform: uppercase; letter-spacing: .5px;
+}
+.fpill.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+.fpill:hover:not(.active) { border-color: var(--navy3); color: var(--navy); }
+
+/* ══════════════════════════════════════════════════
+   CONFIG / BACKUP
+══════════════════════════════════════════════════ */
+.cfg-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0; border-bottom: 1px solid var(--gray100); gap: 20px;
+}
+.cfg-row:last-child { border-bottom: none; }
+.cfg-lbl { font-size: 14px; font-weight: 500; color: var(--navy); }
+.cfg-desc { font-size: 11px; color: var(--gray500); margin-top: 2px; }
+.cfg-inp { width: 220px; }
+.firma-prev {
+  margin-top: 12px; padding: 18px;
+  background: var(--gray50); border: 1px dashed var(--gray300);
+  border-radius: 8px; text-align: center;
+  font-family: var(--font-serif); color: var(--navy);
+  min-height: 70px;
+}
+.backup-box {
+  background: var(--gray50); border: 1px solid var(--gray200);
+  border-radius: 8px; padding: 12px 16px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; color: var(--gray700); margin-bottom: 12px;
+}
+.bdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.bdot.ok  { background: #22c55e; }
+.bdot.old { background: #f59e0b; }
+.bdot.none{ background: var(--gray300); }
+
+/* ══════════════════════════════════════════════════
+   MODAL
+══════════════════════════════════════════════════ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(10,20,40,.6); backdrop-filter: blur(6px);
+  z-index: 500; align-items: flex-start; justify-content: center;
+  padding: 32px 20px; overflow-y: auto;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--white);
+  border-radius: 12px;
+  width: 100%; max-width: 860px;
+  height: fit-content;
+  box-shadow: var(--shadow3);
+  animation: fadeUp .2s ease;
+  flex-shrink: 0;
+}
+.modal-head {
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy2) 100%);
+  padding: 18px 26px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-radius: 12px 12px 0 0;
+  position: sticky; top: 0; z-index: 10;
+}
+.modal-head h3 { font-family: var(--font-serif); color: var(--white); font-size: 20px; font-weight: 600; }
+.modal-close { background: none; border: none; color: rgba(255,255,255,.6); font-size: 22px; cursor: pointer; transition: color .18s; line-height: 1; }
+.modal-close:hover { color: var(--white); }
+.modal-foot {
+  padding: 14px 24px; display: flex; gap: 10px; flex-wrap: wrap;
+  background: var(--gray50); border-top: 1px solid var(--gray200);
+  border-radius: 0 0 12px 12px;
+}
+
+/* ══════════════════════════════════════════════════
+   REPORTE IMPRIMIBLE (formato A4 profesional)
+══════════════════════════════════════════════════ */
+.rp {
+  padding: 40px 48px; font-family: var(--font-sans);
+  color: #1a1a2e; font-size: 12.5px; background: #fff;
+  overflow: visible;
+}
+/* Header del reporte */
+.rp-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding-bottom: 16px; margin-bottom: 20px;
+  border-bottom: 3px solid var(--navy);
+}
+.rp-mono {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-serif); font-size: 20px; font-weight: 700;
+  color: var(--navy); letter-spacing: -1px; flex-shrink: 0;
+}
+.rp-inst { margin-left: 14px; flex: 1; text-align: center; }
+.rp-inst h1 { font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--navy); }
+.rp-inst p  { font-size: 11px; color: #555; margin-top: 2px; line-height: 1.4; }
+.rp-numbox { text-align: right; }
+.rp-numbox .rp-num { font-family: var(--font-serif); font-size: 32px; font-weight: 700; color: var(--navy); line-height: 1; }
+.rp-numbox .rp-tipo { font-size: 10px; font-weight: 700; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 3px; }
+.rp-numbox .rp-fecha { font-size: 10px; color: #888; margin-top: 4px; }
+/* Tabla datos */
+.rp-data-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+  margin-bottom: 16px;
+}
+.rp-data-item {
+  display: flex;
+  align-items: baseline;
+  padding: 5px 0;
+  border-bottom: 1px solid #eef;
+  gap: 10px;
+}
+.rp-data-item .rp-data-label {
+  font-size: 8px; color: #888; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .5px;
+  white-space: nowrap; min-width: 90px; flex-shrink: 0;
+}
+.rp-data-item .rp-data-val {
+  font-size: 11px; color: #1a1a2e;
+}
+.rp-data-item .rp-data-val strong { font-size: 12px; }
+.rp-data-item-full {
+  grid-column: 1 / -1;
+}
+.rp-data-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+.rp-data-table th {
+  background: var(--navy); color: var(--white);
+  padding: 5px 10px; text-align: left;
+  font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+}
+.rp-data-table th:first-child { border-radius: 5px 0 0 5px; }
+.rp-data-table th:last-child  { border-radius: 0 5px 5px 0; }
+.rp-data-table td { padding: 5px 10px; font-size: 11px; border-bottom: 1px solid #eef; vertical-align: top; }
+.rp-data-table tr:last-child td { border-bottom: none; }
+.rp-data-table td:first-child { font-size: 9px; color: #888; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; width: 130px; min-width: 130px; white-space: nowrap; vertical-align: middle; }
+.rp-data-table td:last-child { font-size: 12px; color: #1a1a2e; padding-left: 16px; }
+.rp-data-table td:last-child strong { font-size: 13px; }
+/* Secciones texto */
+.rp-sec { margin-bottom: 14px; }
+.rp-sec-title {
+  font-size: 9px; font-weight: 700; color: var(--navy2);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  border-bottom: 1.5px solid #dde4f0; padding-bottom: 5px; margin-bottom: 8px;
+}
+.rp-text {
+  font-size: 12px; line-height: 1.7; color: #1a1a2e;
+  background: #f7f9fc; padding: 10px 14px;
+  border-radius: 5px; border-left: 3px solid var(--navy);
+  white-space: pre-wrap; word-wrap: break-word;
+  overflow: visible;
+}
+.rp-diag {
+  font-size: 13px; font-weight: 700; line-height: 1.6; color: #1a1a2e;
+  background: #eef3fa; padding: 12px 16px;
+  border-radius: 5px; border-left: 4px solid var(--navy2);
+  white-space: pre-wrap; word-wrap: break-word;
+  overflow: visible;
+}
+/* Firma */
+.rp-firma {
+  margin-top: 36px; padding-top: 14px;
+  border-top: 1px solid #dde4f0;
+  display: flex; justify-content: center;
+}
+.rp-firma-box { text-align: center; min-width: 320px; max-width: 420px; width: 100%; }
+.rp-firma-line { border-top: 1.5px solid var(--navy); margin-bottom: 8px; }
+.rp-firma-name { font-family: var(--font-serif); font-weight: 700; font-size: 15px; color: var(--navy); }
+.rp-firma-mat  { font-size: 11px; color: #666; margin-top: 2px; }
+.rp-firma-conf { font-size: 9.5px; color: #999; margin-top: 6px; font-style: italic; }
+/* Pie del reporte */
+.rp-foot {
+  margin-top: 20px; padding-top: 10px;
+  border-top: 1px solid #dde4f0;
+  font-size: 9px; color: #aaa; text-align: center; line-height: 1.8;
+  overflow: visible; white-space: normal; letter-spacing: .4px;
+  word-break: break-word;
+}
+
+/* ══════════════════════════════════════════════════
+   PRINT
+══════════════════════════════════════════════════ */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  body * { visibility: hidden; }
+  #print-area, #print-area * { visibility: visible; }
+  #print-area {
+    position: absolute; top: 0; left: 0;
+    width: 100%; background: white;
+  }
+  .rp { padding: 14mm 18mm; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 760px) {
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .form-grid, .form-grid.g3, .form-grid.g4 { grid-template-columns: 1fr; }
+  .main { padding: 16px; }
+  .header-inner, .nav-inner { padding: 0 16px; }
+  .stats-two { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════════════ */
+.toast {
+  position: fixed; bottom: 22px; right: 22px;
+  background: var(--navy); color: var(--white);
+  padding: 11px 18px; border-radius: 8px;
+  font-size: 13px; font-weight: 500;
+  box-shadow: var(--shadow3);
+  transform: translateY(80px); opacity: 0;
+  transition: all .28s; z-index: 999;
+  max-width: 320px; border-left: 4px solid var(--gold);
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.err  { border-left-color: #f87171; background: #7f1d1d; }
+.toast.ok   { border-left-color: #4ade80; }
+
+/* ── PLANTILLAS ── */
+.tpl-wrap { position: relative; display: inline-block; }
+.tpl-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 11px; border-radius: 5px;
+  background: var(--gray50); border: 1.5px solid var(--gray200);
+  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+  color: var(--navy2); cursor: pointer;
+  transition: all .15s; letter-spacing: .4px;
+}
+.tpl-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.tpl-btn svg { width: 10px; height: 10px; flex-shrink: 0; }
+.tpl-menu {
+  display: none; position: absolute; top: calc(100% + 5px); left: 0;
+  background: var(--white); border: 1.5px solid var(--gray200);
+  border-radius: 10px; box-shadow: 0 8px 32px rgba(15,36,65,.16);
+  z-index: 300; min-width: 300px; max-width: 400px; overflow: hidden;
+}
+.tpl-menu.open { display: block; animation: fadeUp .15s ease; }
+.tpl-menu-head {
+  padding: 10px 14px 9px; background: var(--navy);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.tpl-menu-head span {
+  font-size: 10px; font-weight: 700; color: rgba(255,255,255,.7);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.tpl-menu-head button {
+  background: rgba(255,255,255,.15); border: none;
+  color: var(--white); font-size: 11px; font-weight: 600;
+  padding: 3px 9px; border-radius: 4px; cursor: pointer;
+  transition: background .15s; letter-spacing: .4px;
+}
+.tpl-menu-head button:hover { background: rgba(255,255,255,.28); }
+.tpl-items { max-height: 280px; overflow-y: auto; }
+.tpl-item {
+  display: flex; align-items: center; gap: 6px;
+  padding: 9px 12px; border-bottom: 1px solid var(--gray100);
+  transition: background .12s;
+}
+.tpl-item:last-child { border-bottom: none; }
+.tpl-item:hover { background: #eef3fa; }
+.tpl-item-body { flex: 1; min-width: 0; cursor: pointer; }
+.tpl-item-name { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 1px; }
+.tpl-item-preview { font-size: 11px; color: var(--gray500); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tpl-item-actions { display: flex; gap: 3px; flex-shrink: 0; }
+.tpl-icon-btn {
+  background: none; border: none; cursor: pointer;
+  width: 24px; height: 24px; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; transition: background .12s; color: var(--gray500);
+}
+.tpl-icon-btn:hover { background: var(--gray100); color: var(--navy); }
+.tpl-icon-btn.del:hover { background: #fee2e2; color: var(--red); }
+.tpl-empty { padding: 16px 14px; font-size: 12px; color: var(--gray300); font-style: italic; text-align: center; }
+.tpl-add-row {
+  padding: 10px 14px; display: flex; align-items: center; gap: 7px;
+  cursor: pointer; color: var(--navy2); font-size: 12px; font-weight: 600;
+  border-top: 1.5px solid var(--gray100); transition: background .12s;
+}
+.tpl-add-row:hover { background: var(--gray50); }
+
+/* Modal de edición de plantilla */
+.tpl-modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(10,20,40,.5); backdrop-filter: blur(4px);
+  z-index: 600; align-items: center; justify-content: center; padding: 20px;
+}
+.tpl-modal-overlay.open { display: flex; }
+.tpl-modal {
+  background: var(--white); border-radius: 12px;
+  width: 100%; max-width: 560px;
+  box-shadow: 0 12px 60px rgba(15,36,65,.22);
+  animation: fadeUp .18s ease; overflow: hidden;
+}
+.tpl-modal-head {
+  background: linear-gradient(90deg, var(--navy) 0%, var(--navy2) 100%);
+  padding: 16px 22px; display: flex; align-items: center; justify-content: space-between;
+}
+.tpl-modal-head h4 { font-family: var(--font-serif); font-size: 18px; color: var(--white); font-weight: 600; }
+.tpl-modal-head button { background: none; border: none; color: rgba(255,255,255,.6); font-size: 20px; cursor: pointer; }
+.tpl-modal-body { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.tpl-modal-foot { padding: 14px 22px; background: var(--gray50); border-top: 1px solid var(--gray100); display: flex; gap: 10px; justify-content: flex-end; }
+
+</style>
+<!-- Google Identity Services + jsPDF -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<!-- ════════════════════ HEADER ════════════════════ -->
+<header class="app-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="monogram" style="background:var(--navy);padding:2px;">
+        <img src="data:image/png;base64,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" alt="Logo AW" style="width:36px;height:36px;object-fit:contain;display:block;">
+      </div>
+      <div class="brand-text" style="display:flex;flex-direction:column;align-items:center;">
+        <span class="brand-name">Dra. Alejandra Wernicke, MD MSc</span>
+        <span class="brand-sub" style="letter-spacing:.5px;text-align:center;">Especialista Universitaria en Anatomía Patológica-UBA</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="btn btn-gold btn-sm" onclick="nuevaBiopsia()" style="padding:8px 18px;font-size:12px">＋ Nueva Biopsia</button>
+      <div class="next-num">
+        <small>Próximo N°</small>
+        <span id="hdr-next">–</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <button class="tab-btn active" onclick="showTab('stats',this)">📊 Estadísticas</button>
+    <button class="tab-btn" onclick="showTab('lista',this)">🔬 Lista de Biopsias</button>
+    <button class="tab-btn" onclick="showTab('config',this)">⚙ Configuración</button>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- ════════════════════ NUEVA / EDITAR ════════════════════ -->
+<div id="panel-nuevo" class="panel panel-anim">
+<div class="card">
+  <div class="card-header">
+    <h2 id="form-title">Nueva Biopsia</h2>
+    <span class="pill" id="tipo-pill">Biopsia</span>
+    <div class="edit-badge" id="edit-badge">✏️ Editando</div>
+  </div>
+  <div class="card-body">
+
+    <!-- Número -->
+    <div class="form-grid" style="margin-bottom:4px">
+      <div class="fg">
+        <label>Número de Protocolo</label>
+        <input type="text" id="num-display" readonly
+          style="cursor:default;font-weight:600;color:var(--navy);"
+          value="" placeholder="">
+      </div>
+      <div class="fg">
+        <label>Fecha de Recepción</label>
+        <input type="date" id="f-fecha">
+      </div>
+    </div>
+
+    <div class="sec-label">Datos del Paciente y Estudio</div>
+    <div class="form-grid g3">
+      <div class="fg" style="grid-column:1/3">
+        <label>Nombre y Apellido *</label>
+        <input type="text" id="f-paciente" placeholder="Apellido, Nombre">
+      </div>
+      <div class="fg">
+        <label>Edad</label>
+        <input type="number" id="f-edad" placeholder="años" min="0" max="130">
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="fg">
+        <label>Médico Solicitante</label>
+        <input type="text" id="f-medico" placeholder="Dr/a. Nombre Apellido — Especialidad">
+      </div>
+      <div class="fg">
+        <label>Material Remitido / Localización</label>
+        <input type="text" id="f-material" placeholder="Ej: Cuello uterino — biopsia punch">
+      </div>
+    </div>
+
+    <div class="sec-label">Descripción Anatomopatológica</div>
+    <div class="fg" style="margin-bottom:14px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
+        <label style="margin-bottom:0">Macroscopía</label>
+        <div class="tpl-wrap" id="tpl-wrap-macro">
+          <button class="tpl-btn" type="button" onclick="toggleTpl('macro',event)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+            Plantillas
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="tpl-menu" id="tpl-menu-macro">
+            <div class="tpl-menu-head">
+              <span>Macroscopía — <span id="tpl-macro-count">0</span> plantillas</span>
+              <button onclick="event.stopPropagation();nuevaPlantilla('macro')">＋ Nueva</button>
+            </div>
+            <div id="tpl-list-macro"></div>
+            <div class="tpl-add-row" onclick="event.stopPropagation();nuevaPlantilla('macro')">
+              <span style="font-size:15px;line-height:1">＋</span> Nueva plantilla
+            </div>
+          </div>
+        </div>
+      </div>
+      <textarea id="f-macro" rows="4" placeholder="Descripción macroscópica del material remitido. Color, consistencia, dimensiones, aspecto..."></textarea>
+    </div>
+    <div class="fg" style="margin-bottom:14px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
+        <label style="margin-bottom:0">Microscopía</label>
+        <div class="tpl-wrap" id="tpl-wrap-micro">
+          <button class="tpl-btn" type="button" onclick="toggleTpl('micro',event)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+            Plantillas
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="tpl-menu" id="tpl-menu-micro">
+            <div class="tpl-menu-head">
+              <span>Microscopía — <span id="tpl-micro-count">0</span> plantillas</span>
+              <button onclick="event.stopPropagation();nuevaPlantilla('micro')">＋ Nueva</button>
+            </div>
+            <div id="tpl-list-micro"></div>
+            <div class="tpl-add-row" onclick="event.stopPropagation();nuevaPlantilla('micro')">
+              <span style="font-size:15px;line-height:1">＋</span> Nueva plantilla
+            </div>
+          </div>
+        </div>
+      </div>
+      <textarea id="f-micro" rows="5" placeholder="Hallazgos histológicos. Arquitectura tisular, características celulares, tinción H&E..."></textarea>
+    </div>
+
+    <div class="sec-label">Diagnóstico</div>
+    <div class="fg">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
+        <label style="margin-bottom:0">Diagnóstico Anatomopatológico</label>
+        <div class="tpl-wrap" id="tpl-wrap-diag">
+          <button class="tpl-btn" type="button" onclick="toggleTpl('diag',event)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+            Plantillas
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="tpl-menu" id="tpl-menu-diag">
+            <div class="tpl-menu-head">
+              <span>Diagnóstico — <span id="tpl-diag-count">0</span> plantillas</span>
+              <button onclick="event.stopPropagation();nuevaPlantilla('diag')">＋ Nueva</button>
+            </div>
+            <div id="tpl-list-diag"></div>
+            <div class="tpl-add-row" onclick="event.stopPropagation();nuevaPlantilla('diag')">
+              <span style="font-size:15px;line-height:1">＋</span> Nueva plantilla
+            </div>
+          </div>
+        </div>
+      </div>
+      <textarea id="f-diag" rows="4" placeholder="Diagnóstico definitivo..." style="border-color:var(--navy2);font-size:15px;font-weight:500"></textarea>
+    </div>
+
+    <div class="sec-label">Inmunohistoquímica</div>
+    <div class="fg">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
+        <label style="margin-bottom:0">Inmunohistoquímica</label>
+        <div class="tpl-wrap" id="tpl-wrap-ihq">
+          <button class="tpl-btn" type="button" onclick="toggleTpl('ihq',event)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+            Plantillas
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="tpl-menu" id="tpl-menu-ihq">
+            <div class="tpl-menu-head">
+              <span>Inmunohistoquímica — <span id="tpl-ihq-count">0</span> plantillas</span>
+              <button onclick="event.stopPropagation();nuevaPlantilla('ihq')">＋ Nueva</button>
+            </div>
+            <div id="tpl-list-ihq"></div>
+            <div class="tpl-add-row" onclick="event.stopPropagation();nuevaPlantilla('ihq')">
+              <span style="font-size:15px;line-height:1">＋</span> Nueva plantilla
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--gray100);border:1px solid var(--gray200);border-radius:var(--radius);padding:12px 14px;font-size:13px;color:var(--gray500);line-height:1.6;margin-bottom:8px;">
+        <strong style="color:var(--navy);display:block;margin-bottom:4px;">Texto fijo del informe:</strong>
+        Se realiza tecnica de inmunohistoquimica en sistema automatizado BenchmarkXT Ventana Medical Systems. Tucson AZ. Método de revelado: UltraView Universal DAB Kit. OptiView DAB IHC Detection Kit según protocolos de la Institución.
+      </div>
+      <textarea id="f-ihq" rows="4" placeholder="Agregue aquí los anticuerpos, clones y resultados específicos de este caso..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-gold" id="btn-guardar" onclick="guardar()">💾 Guardar Biopsia</button>
+      <button class="btn btn-ghost" onclick="vistaPrevia()">👁 Vista Previa / Imprimir</button>
+      <button class="btn btn-ghost" onclick="cancelarEdicion()">✕ Cancelar</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════ ESTADÍSTICAS ════════════════════ -->
+<div id="panel-stats" class="panel active panel-anim">
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-ico ico-navy">🔬</div>
+      <div><div class="stat-val" id="st-total">0</div><div class="stat-lbl">Total Biopsias</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-ico ico-gold">📅</div>
+      <div><div class="stat-val" id="st-anio">0</div><div class="stat-lbl">Este Año</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-ico ico-amber">⏳</div>
+      <div><div class="stat-val" id="st-pend">0</div><div class="stat-lbl">Sin Diagnóstico</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-ico ico-green">🔢</div>
+      <div><div class="stat-val" id="st-prox">—</div><div class="stat-lbl">Próximo N°</div></div>
+    </div>
+  </div>
+  <div class="stats-two">
+    <div class="card">
+      <div class="card-header"><h2>Resumen del Año</h2></div>
+      <div class="card-body" id="st-resumen-anio">
+        <div style="color:var(--gray300);text-align:center;padding:20px">Sin datos</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h2>Pendientes Sin Diagnóstico</h2></div>
+      <div class="card-body" id="st-pend-list">
+        <div style="color:var(--gray300);text-align:center;padding:20px">✅ Sin pendientes</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════ LISTA BIOPSIAS ════════════════════ -->
+<div id="panel-lista" class="panel panel-anim">
+<div class="card">
+  <div class="card-header">
+    <h2>Lista de Biopsias</h2>
+    <span class="pill" id="lista-count">0</span>
+    <div class="ml">
+      <button class="btn btn-ghost btn-sm" onclick="exportCSV()">📤 Exportar CSV</button>
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('csv-inp').click()">📥 Importar CSV</button>
+      <input type="file" id="csv-inp" accept=".csv" style="display:none" onchange="importCSV(event)">
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="search-row">
+      <input type="text" id="lista-q" placeholder="🔍 Buscar por N°, paciente, médico o localización..." oninput="renderLista()" style="background:var(--gray50);border:1.5px solid var(--gray200);border-radius:7px;padding:9px 13px;font-family:var(--font-sans);font-size:14px;color:var(--navy);width:100%">
+      <select id="lista-ord" onchange="renderLista()" style="width:auto;padding:9px 32px 9px 13px;background:var(--gray50);border:1.5px solid var(--gray200);border-radius:7px;font-family:var(--font-sans);font-size:12px;color:var(--navy);appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7a99' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 10px center;flex-shrink:0">
+        <option value="desc">Más recientes</option>
+        <option value="asc">Más antiguas</option>
+        <option value="az">Paciente A→Z</option>
+        <option value="za">Paciente Z→A</option>
+      </select>
+    </div>
+    <div class="bio-table-wrap">
+      <table class="bio-table">
+        <thead><tr>
+          <th>N° Protocolo</th>
+          <th>Fecha Recep.</th>
+          <th>Paciente</th>
+          <th>Edad</th>
+          <th>Localización</th>
+          <th>Médico Solicitante</th>
+          <th>Diagnóstico</th>
+          <th>Estado</th>
+          <th></th>
+        </tr></thead>
+        <tbody id="lista-tbody"></tbody>
+      </table>
+    </div>
+    <div id="lista-empty" class="empty-state" style="display:none">
+      <div class="ei">🔬</div><p>No se encontraron biopsias.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════ CONFIGURACIÓN ════════════════════ -->
+<div id="panel-config" class="panel panel-anim">
+<div class="card">
+  <div class="card-header"><h2>Configuración del Sistema</h2></div>
+  <div class="card-body">
+    <div class="cfg-row">
+      <div><div class="cfg-lbl">Número de caso actual</div>
+        <div class="cfg-desc">Próximo número a asignar. El prefijo de año cambia automáticamente el 1° de enero.</div></div>
+      <input type="number" class="cfg-inp" id="cfg-num" min="1" style="background:var(--gray50);border:1.5px solid var(--gray200);border-radius:7px;padding:9px 13px;font-family:var(--font-sans);font-size:14px;color:var(--navy)">
+    </div>
+    <div class="cfg-row">
+      <div><div class="cfg-lbl">Nombre del profesional</div></div>
+      <input type="text" class="cfg-inp" id="cfg-nombre" placeholder="Dra. Alejandra Wernicke" style="background:var(--gray50);border:1.5px solid var(--gray200);border-radius:7px;padding:9px 13px;font-family:var(--font-sans);font-size:14px;color:var(--navy)">
+    </div>
+    <div class="cfg-row">
+      <div><div class="cfg-lbl">Especialidad</div></div>
+      <input type="text" class="cfg-inp" id="cfg-esp" placeholder="Especialista Universitaria en Anatomía Patológica" style="background:var(--gray50);border:1.5px solid var(--gray200);border-radius:7px;padding:9px 13px;font-family:var(--font-sans);font-size:14px;color:var(--navy)">
+    </div>
+    <div class="cfg-row">
+      <div><div class="cfg-lbl">Institución</div></div>
+      <input type="text" class="cfg-inp" id="cfg-inst" placeholder="Hospital Italiano de Bs As" style="background:var(--gray50);border:1.5px solid var(--gray200);border-radius:7px;padding:9px 13px;font-family:var(--font-sans);font-size:14px;color:var(--navy)">
+    </div>
+    <div class="cfg-row">
+      <div><div class="cfg-lbl">Matrícula</div></div>
+      <input type="text" class="cfg-inp" id="cfg-mat" placeholder="MN 108790 — MP 551593" style="background:var(--gray50);border:1.5px solid var(--gray200);border-radius:7px;padding:9px 13px;font-family:var(--font-sans);font-size:14px;color:var(--navy)">
+    </div>
+    <div class="cfg-row">
+      <div><div class="cfg-lbl">Dirección / Teléfono / Email</div>
+        <div class="cfg-desc">Aparece en el pie del reporte impreso.</div></div>
+      <input type="text" class="cfg-inp" id="cfg-dir" placeholder="Dirección, Ciudad — Tel: ..." style="background:var(--gray50);border:1.5px solid var(--gray200);border-radius:7px;padding:9px 13px;font-family:var(--font-sans);font-size:14px;color:var(--navy)">
+    </div>
+    <div style="margin-top:14px">
+      <div style="font-size:10px;font-weight:600;color:var(--gray500);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Vista previa de firma</div>
+      <div class="firma-prev" id="firma-prev"></div>
+    </div>
+
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--gray100)">
+      <div style="font-family:var(--font-serif);font-size:17px;font-weight:600;color:var(--navy);margin-bottom:14px">Backup y Restauración</div>
+      <div class="backup-box">
+        <div class="bdot none" id="bdot"></div>
+        <span id="backup-msg">Sin backups guardados aún.</span>
+      </div>
+      <div class="btn-row" style="margin-top:0">
+        <button class="btn btn-gold" onclick="guardarCfg()">💾 Guardar Configuración</button>
+        <button class="btn btn-navy" onclick="hacerBackup()">🗄️ Backup Ahora</button>
+        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('restore-inp').click()">↩️ Restaurar Backup</button>
+        <input type="file" id="restore-inp" accept=".json" style="display:none" onchange="restaurar(event)">
+      </div>
+    </div>
+
+    <div style="margin-top:18px;padding:12px 16px;background:var(--gray50);border:1px solid var(--gray200);border-radius:8px;font-size:12px;color:var(--gray500);line-height:1.7">
+      <strong style="color:var(--gray700)">💾 Guardado automático:</strong> Cada reporte se graba en localStorage automáticamente. Se recomienda hacer un backup .json periódicamente para no perder datos si se borra el navegador.
+    </div>
+  </div>
+</div>
+</div>
+
+</main>
+
+<!-- ════════════════════ MODAL ════════════════════ -->
+<div class="modal-overlay" id="modal" onclick="closeModalBg(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modal-title">Vista Previa</h3>
+      <button class="modal-close" onclick="cerrarModal()">✕</button>
+    </div>
+    <div id="modal-body"></div>
+    <div class="modal-foot">
+      <button class="btn btn-navy" onclick="imprimir()">🖨 Imprimir / PDF</button>
+      <button class="btn btn-gold" onclick="enviarADrive()" id="btn-drive" style="gap:7px">
+        <svg style="width:15px;height:15px;flex-shrink:0" viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/></svg>
+        Enviar a Drive
+      </button>
+      <button class="btn btn-outline-navy" onclick="editarDesdeModal()">✏️ Editar</button>
+      <button class="btn btn-ghost" onclick="cerrarModal()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════ MODAL EDITOR DE PLANTILLAS ════════ -->
+<div class="tpl-modal-overlay" id="tpl-modal" onclick="if(event.target===this)cerrarEditorPlantilla()">
+  <div class="tpl-modal">
+    <div class="tpl-modal-head">
+      <h4 id="tpl-edit-title">Nueva plantilla</h4>
+      <button onclick="cerrarEditorPlantilla()">✕</button>
+    </div>
+    <div class="tpl-modal-body">
+      <div class="fg">
+        <label>Nombre de la plantilla *</label>
+        <input type="text" id="tpl-edit-nombre" placeholder="Ej: Punción de mama, Vulva, Ganglio..."
+          onkeydown="if(event.key==='Enter')document.getElementById('tpl-edit-texto').focus()">
+      </div>
+      <div class="fg">
+        <label>Texto de la plantilla *</label>
+        <textarea id="tpl-edit-texto" rows="6"
+          placeholder="Escribí el texto que querés insertar automáticamente..."
+          style="min-height:120px"></textarea>
+      </div>
+    </div>
+    <div class="tpl-modal-foot">
+      <button class="btn btn-ghost btn-sm" onclick="cerrarEditorPlantilla()">Cancelar</button>
+      <button class="btn btn-gold" onclick="guardarEdicionPlantilla()">💾 Guardar Plantilla</button>
+    </div>
+  </div>
+</div>
+
+<div id="print-area" style="display:none"></div>
+<div class="toast" id="toast"></div>
+
+<!-- ════════════════════ JAVASCRIPT ════════════════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+// ══ FIREBASE CONFIG ══
+const firebaseConfig = {
+  apiKey: "AIzaSyAxXsm0OeefofCKAr2u0tsRxdvTCStuCaQ",
+  authDomain: "biopsias-wernicke.firebaseapp.com",
+  projectId: "biopsias-wernicke",
+  storageBucket: "biopsias-wernicke.firebasestorage.app",
+  messagingSenderId: "362857499151",
+  appId: "1:362857499151:web:48069d0b6863a4dce2317a"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// ══ ESTADO ══
+let cfg = {
+  numero: 762,
+  nombre: 'Dra. Alejandra Wernicke',
+  especialidad: 'Especialista Universitaria en Anatomía Patológica',
+  institucion: 'Hospital Italiano de Bs As',
+  matricula: 'MN 108790 — MP 551593',
+  direccion: ''
+};
+let biopsias = [];
+let editandoId = null;
+let modalId = null;
+let filtroActual = 'todas';
+
+// ══ INIT ══
+(function(){
+  try { const c = localStorage.getItem('bx_cfg');   if(c) cfg      = Object.assign(cfg, JSON.parse(c)); } catch(e){}
+  try { const b = localStorage.getItem('bx_data');  if(b) biopsias = JSON.parse(b); } catch(e){}
+  cargarCfgUI();
+  updateHdrNext();
+  setFechaHoy();
+  document.getElementById('num-display').value = fmtNum(cfg.numero);
+  updateBackupUI();
+  sincronizarFirebase();
+})();
+
+function sincronizarFirebase(){
+  // Escuchar biopsias en tiempo real
+  db.collection('biopsias').onSnapshot(snapshot => {
+    if(snapshot.empty) return;
+    const remotas = [];
+    snapshot.forEach(doc => remotas.push(doc.data()));
+    if(remotas.length > 0){
+      biopsias = remotas;
+      localStorage.setItem('bx_data', JSON.stringify(biopsias));
+      renderLista(); updateStats(); updateHdrNext();
+      document.getElementById('num-display').value = fmtNum(cfg.numero);
+    }
+  }, err => console.warn('Firebase biopsias sync:', err));
+
+  // Escuchar config en tiempo real
+  db.collection('config').doc('principal').onSnapshot(doc => {
+    if(doc.exists){
+      const r = doc.data();
+      if(r.numero > cfg.numero){
+        cfg = Object.assign(cfg, r);
+        localStorage.setItem('bx_cfg', JSON.stringify(cfg));
+        updateHdrNext();
+        document.getElementById('num-display').value = fmtNum(cfg.numero);
+      }
+    }
+  }, err => console.warn('Firebase config sync:', err));
+}
+
+// ══ UTILS ══
+function anio2(){ return String(new Date().getFullYear()).slice(-2); }
+function fmtNum(n){ return anio2() + '-' + String(n).padStart(3,'0'); }
+function fmtF(iso){ if(!iso) return '—'; const[y,m,d]=iso.split('-'); return d+'/'+m+'/'+y; }
+function dv(s){ return s || '—'; }
+function nl(s){ return (s||'').replace(/\n/g,'<br>'); }
+function gv(id){ const e=document.getElementById(id); return e?e.value.trim():''; }
+function hoy(){ return new Date().toISOString().split('T')[0]; }
+function updateHdrNext(){ document.getElementById('hdr-next').textContent = fmtNum(cfg.numero); }
+function setFechaHoy(){ document.getElementById('f-fecha').value = hoy(); }
+
+// Autosave silencioso
+function save(){
+  localStorage.setItem('bx_cfg',  JSON.stringify(cfg));
+  localStorage.setItem('bx_data', JSON.stringify(biopsias));
+  db.collection('config').doc('principal').set(cfg).catch(e => console.warn('Firebase cfg:', e));
+}
+
+function saveFirebaseBiopsia(b){
+  // Limpiar objeto para Firebase (eliminar undefined)
+  const bClean = JSON.parse(JSON.stringify(b));
+  db.collection('biopsias').doc(String(b.id)).set(bClean)
+    .then(() => console.log('✅ Biopsia guardada en Firebase:', b.codigo))
+    .catch(e => console.error('❌ Firebase biopsia error:', e));
+}
+
+function deleteFirebaseBiopsia(id){
+  db.collection('biopsias').doc(String(id)).delete().catch(e => console.warn('Firebase delete:', e));
+}
+
+// ══ NUMERACIÓN ══
+// El prefijo cambia con el año (25-, 26-, 27-...)
+// El número NO se reinicia — solo el prefijo cambia al girar el año.
+
+// ══ GUARDAR / EDITAR ══
+function guardar(){
+  const paciente = document.getElementById('f-paciente').value.trim();
+  if(!paciente){ toast('⚠️ Ingresá el nombre del paciente', 'err'); return; }
+
+  const esEdicion = !!editandoId;
+  const exist     = esEdicion ? biopsias.find(b=>b.id===editandoId) : null;
+  const numUsado  = esEdicion ? exist.numero : cfg.numero;
+  const codigo    = fmtNum(numUsado);
+
+  const b = {
+    id:               esEdicion ? editandoId : Date.now(),
+    numero:           numUsado,
+    codigo:           codigo,
+    fechaCreacion:    esEdicion ? exist.fechaCreacion : new Date().toISOString(),
+    fechaModif:       esEdicion ? new Date().toISOString() : undefined,
+    fecha:            gv('f-fecha'),
+    paciente,
+    edad:             gv('f-edad'),
+    medico:           gv('f-medico'),
+    material:         gv('f-material'),
+    macro:            gv('f-macro'),
+    micro:            gv('f-micro'),
+    ihq:              gv('f-ihq'),
+    diagnostico:      gv('f-diag'),
+  };
+
+  if(esEdicion){
+    const idx = biopsias.findIndex(x=>x.id===editandoId);
+    if(idx !== -1) biopsias[idx] = b;
+    toast('✅ Biopsia ' + codigo + ' actualizada', 'ok');
+    saveFirebaseBiopsia(b);
+  } else {
+    biopsias.unshift(b);
+    cfg.numero++;
+    toast('✅ Biopsia ' + codigo + ' guardada', 'ok');
+  }
+
+  save(); saveFirebaseBiopsia(b); updateHdrNext(); renderLista(); updateStats();
+  cancelarEdicion();
+}
+
+// ══ EDITAR ══
+function editarBiopsia(id){
+  const b = biopsias.find(x=>x.id===id); if(!b) return;
+  editandoId = id;
+  cerrarModal();
+  showTab('nuevo', document.querySelector('.tab-btn'));
+
+  document.getElementById('form-title').textContent = 'Editar Biopsia';
+  document.getElementById('edit-badge').classList.add('show');
+  document.getElementById('btn-guardar').textContent = '💾 Guardar Cambios';
+  document.getElementById('num-display').value = b.codigo;
+
+  document.getElementById('f-fecha').value    = b.fecha    || '';
+  document.getElementById('f-paciente').value = b.paciente || '';
+  document.getElementById('f-edad').value     = b.edad     || '';
+  document.getElementById('f-medico').value   = b.medico   || '';
+  document.getElementById('f-material').value = b.material || '';
+  document.getElementById('f-macro').value    = b.macro    || '';
+  document.getElementById('f-micro').value    = b.micro    || '';
+  document.getElementById('f-ihq').value      = b.ihq  || '';
+  document.getElementById('f-diag').value     = b.diagnostico || '';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function editarDesdeModal(){
+  if(modalId) editarBiopsia(modalId);
+}
+
+function cancelarEdicion(){
+  editandoId = null;
+  document.getElementById('form-title').textContent = 'Nueva Biopsia';
+  document.getElementById('edit-badge').classList.remove('show');
+  document.getElementById('btn-guardar').textContent = '💾 Guardar Biopsia';
+  document.getElementById('num-display').value = fmtNum(cfg.numero);
+  ['f-paciente','f-edad','f-medico','f-material','f-macro','f-micro','f-diag'].forEach(id=>{
+    const e=document.getElementById(id); if(e) e.value='';
+  });
+  setFechaHoy();
+}
+
+// ══ ELIMINAR ══
+function eliminar(id){
+  const b = biopsias.find(x=>x.id===id); if(!b) return;
+  if(!confirm('¿Eliminar la biopsia ' + b.codigo + ' (' + b.paciente + ')?\nEsta acción no se puede deshacer.')) return;
+  biopsias = biopsias.filter(x=>x.id!==id);
+  save(); deleteFirebaseBiopsia(id); renderLista(); updateStats();
+  if(modalId===id) cerrarModal();
+  toast('Biopsia ' + b.codigo + ' eliminada');
+}
+
+// ══ VISTA PREVIA ══
+function vistaPrevia(){
+  const paciente = document.getElementById('f-paciente').value.trim();
+  if(!paciente){ toast('⚠️ Completá al menos el nombre del paciente', 'err'); return; }
+  const b = {
+    codigo:      editandoId ? (biopsias.find(x=>x.id===editandoId)||{}).codigo||fmtNum(cfg.numero) : fmtNum(cfg.numero),
+    fecha:       gv('f-fecha'),   paciente,        edad:     gv('f-edad'),
+    medico:      gv('f-medico'),  material:        gv('f-material'),
+    macro:       gv('f-macro'),   micro:           gv('f-micro'),
+    diagnostico: gv('f-diag'),
+  };
+  modalId = null;
+  document.getElementById('modal-title').textContent = 'Vista Previa — ' + b.codigo;
+  document.getElementById('modal-body').innerHTML = buildReporte(b);
+  document.getElementById('modal').classList.add('open');
+}
+
+function verBiopsia(id){
+  const b = biopsias.find(x=>x.id===id); if(!b) return;
+  modalId = id;
+  document.getElementById('modal-title').textContent = 'Protocolo ' + b.codigo;
+  document.getElementById('modal-body').innerHTML = buildReporte(b);
+  document.getElementById('modal').classList.add('open');
+}
+
+// ══ BUILD REPORTE ══
+function buildReporte(b){
+  const c = cfg;
+  return `<div class="rp">
+    <div class="rp-head">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="rp-mono" style="background:var(--navy);padding:4px;">
+          <img src="data:image/png;base64,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" alt="Logo AW" style="width:44px;height:44px;object-fit:contain;display:block;">
+        </div>
+        <div class="rp-inst" style="text-align:center;">
+          <h1>${c.nombre ? c.nombre + ', MD MSc' : 'Dra. Alejandra Wernicke, MD MSc'}</h1>
+          <p>${c.especialidad||'Especialista Universitaria en Anatomía Patológica'} - UBA</p>
+        </div>
+      </div>
+      <div class="rp-numbox">
+        <div class="rp-num">${b.codigo}</div>
+        <div class="rp-tipo">Protocolo Histopatológico</div>
+        <div class="rp-fecha">Recepción: ${fmtF(b.fecha)}</div>
+      </div>
+    </div>
+
+    <div class="rp-sec">
+      <div class="rp-sec-title">Datos del Estudio</div>
+      <div class="rp-data-grid">
+        <div class="rp-data-item">
+          <span class="rp-data-label">Protocolo N°</span>
+          <span class="rp-data-val"><strong>${b.codigo}</strong></span>
+        </div>
+        <div class="rp-data-item">
+          <span class="rp-data-label">Fecha de Recepción</span>
+          <span class="rp-data-val">${fmtF(b.fecha)}</span>
+        </div>
+        <div class="rp-data-item">
+          <span class="rp-data-label">Paciente</span>
+          <span class="rp-data-val"><strong>${dv(b.paciente)}</strong></span>
+        </div>
+        <div class="rp-data-item">
+          <span class="rp-data-label">Edad</span>
+          <span class="rp-data-val">${b.edad ? b.edad + ' años' : '—'}</span>
+        </div>
+        <div class="rp-data-item">
+          <span class="rp-data-label">Médico Solicitante</span>
+          <span class="rp-data-val">${dv(b.medico)}</span>
+        </div>
+        <div class="rp-data-item rp-data-item-full">
+          <span class="rp-data-label">Material Remitido</span>
+          <span class="rp-data-val">${dv(b.material)}</span>
+        </div>
+      </div>
+    </div>
+
+    ${b.macro ? `<div class="rp-sec"><div class="rp-sec-title">Macroscopía</div><div class="rp-text">${nl(b.macro)}</div></div>` : ''}
+    ${b.micro ? `<div class="rp-sec"><div class="rp-sec-title">Microscopía</div><div class="rp-text">${nl(b.micro)}</div></div>` : ''}
+    <div class="rp-sec">
+      <div class="rp-sec-title">Diagnóstico Anatomopatológico</div>
+      <div class="rp-diag">${nl(b.diagnostico)||'<em style="color:#999;font-weight:400">Sin diagnóstico cargado aún.</em>'}</div>
+    </div>
+
+    <div class="rp-sec">
+      <div class="rp-sec-title">Inmunohistoquímica</div>
+      <div class="rp-text" style="font-style:italic;color:#555;">Se realiza tecnica de inmunohistoquimica en sistema automatizado BenchmarkXT Ventana Medical Systems. Tucson AZ. Método de revelado: UltraView Universal DAB Kit. OptiView DAB IHC Detection Kit según protocolos de la Institución.</div>
+      ${b.ihq ? `<div class="rp-text" style="margin-top:6px;">${nl(b.ihq)}</div>` : ''}
+    </div>
+
+    <div class="rp-firma">
+      <div class="rp-firma-box">
+        <div style="margin-bottom:2px">
+          <img src="data:image/png;base64,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" alt="Firma digital" style="height:52px;max-width:200px;object-fit:contain;opacity:.9;mix-blend-mode:multiply">
+        </div>
+        <div class="rp-firma-line"></div>
+        <div class="rp-firma-name">${c.nombre ? c.nombre + ', MD MSc' : 'Dra. Alejandra Wernicke, MD MSc'}</div>
+        <div class="rp-firma-mat">${c.especialidad||'Especialista Universitaria en Anatomía Patológica'}</div>
+        <div class="rp-firma-mat">${c.matricula||'MN 108790 — MP 551593'}</div>
+        <div class="rp-firma-conf">La información contenida en este informe es de carácter confidencial y está destinada exclusivamente al profesional médico solicitante.</div>
+      </div>
+    </div>
+
+    <div class="rp-foot">
+      Información confidencial &nbsp;·&nbsp; Secreto médico &nbsp;·&nbsp; Alcances del Art. 156 del Código Penal &nbsp;·&nbsp; Información confidencial &nbsp;·&nbsp; Secreto médico &nbsp;·&nbsp; Alcances del Art. 156 del Código Penal &nbsp;·&nbsp; Información confidencial &nbsp;·&nbsp; Secreto médico &nbsp;·&nbsp; Alcances del Art. 156 del Código Penal
+    </div>
+  </div>`;
+}
+
+// ══ IMPRIMIR ══
+function imprimir(){
+  const pa = document.getElementById('print-area');
+  pa.innerHTML = document.getElementById('modal-body').innerHTML;
+  pa.style.display = 'block';
+  window.print();
+  setTimeout(()=>{ pa.style.display='none'; pa.innerHTML=''; }, 1800);
+}
+
+// ══ MODAL ══
+function cerrarModal(){ document.getElementById('modal').classList.remove('open'); modalId=null; }
+function closeModalBg(e){ if(e.target.id==='modal') cerrarModal(); }
+
+// ══ TABS ══
+function showTab(name, btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  const p = document.getElementById('panel-'+name);
+  if(p){ p.classList.add('active'); }
+  if(btn) btn.classList.add('active');
+  else {
+    const all = document.querySelectorAll('.tab-btn');
+    const map = {nuevo:0,stats:1,lista:2,config:3};
+    if(map[name]!==undefined && all[map[name]]) all[map[name]].classList.add('active');
+  }
+  if(name==='lista')  renderLista();
+  if(name==='stats')  updateStats();
+  if(name==='config') cargarCfgUI();
+  if(name==='nuevo' && !editandoId){
+    document.getElementById('num-display').value = fmtNum(cfg.numero);
+  }
+}
+
+// ══ LISTA ══
+function hl(txt, q){
+  if(!q||!txt) return String(txt||'');
+  const re = new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+  return String(txt).replace(re,'<mark>$1</mark>');
+}
+
+function renderLista(){
+  const q   = (document.getElementById('lista-q').value||'').toLowerCase().trim();
+  const ord = document.getElementById('lista-ord').value;
+
+  let lista = biopsias.slice();
+  if(q) lista = lista.filter(b=>
+    (b.codigo   ||'').toLowerCase().includes(q) ||
+    (b.paciente ||'').toLowerCase().includes(q) ||
+    (b.medico   ||'').toLowerCase().includes(q) ||
+    (b.material ||'').toLowerCase().includes(q) ||
+    (b.diagnostico||'').toLowerCase().includes(q)
+  );
+  lista.sort((a,b)=>{
+    if(ord==='asc')  return a.numero - b.numero;
+    if(ord==='desc') return b.numero - a.numero;
+    if(ord==='az')   return (a.paciente||'').localeCompare(b.paciente||'');
+    if(ord==='za')   return (b.paciente||'').localeCompare(a.paciente||'');
+    return 0;
+  });
+
+  document.getElementById('lista-count').textContent = q ? lista.length+'/'+biopsias.length : biopsias.length;
+  const tb = document.getElementById('lista-tbody');
+  const em = document.getElementById('lista-empty');
+
+  if(!lista.length){ tb.innerHTML=''; em.style.display='block'; return; }
+  em.style.display='none';
+
+  const pend = b => !(b.diagnostico||'').trim();
+  tb.innerHTML = lista.map(b=>`
+    <tr onclick="verBiopsia(${b.id})">
+      <td class="td-num">${hl(b.codigo,q)}</td>
+      <td style="color:var(--gray500);white-space:nowrap">${fmtF(b.fecha)}</td>
+      <td class="td-pac">${hl(b.paciente,q)}</td>
+      <td style="color:var(--gray500)">${b.edad?b.edad+' a':'—'}</td>
+      <td>${hl(b.material||'—',q)}</td>
+      <td style="color:var(--gray500)">${b.medico?hl(b.medico,q):'—'}</td>
+      <td class="td-diag" title="${(b.diagnostico||'').replace(/"/g,'&quot;')}">${hl((b.diagnostico||'').split('\n')[0]||'—',q)}</td>
+      <td>${pend(b)?'<span class="badge badge-pend">⏳ Pendiente</span>':'<span class="badge badge-ok">✓ Completa</span>'}</td>
+      <td class="td-acc">
+        <button class="btn btn-outline-navy btn-sm" onclick="event.stopPropagation();editarBiopsia(${b.id})">✏️</button>
+        <button class="btn btn-danger" style="margin-left:4px" onclick="event.stopPropagation();eliminar(${b.id})">🗑</button>
+      </td>
+    </tr>`).join('');
+}
+
+// ══ ESTADÍSTICAS ══
+function updateStats(){
+  const aa = anio2();
+  const deAnio = biopsias.filter(b=>b.codigo&&b.codigo.startsWith(aa+'-'));
+  const pend   = biopsias.filter(b=>!(b.diagnostico||'').trim());
+
+  document.getElementById('st-total').textContent = biopsias.length;
+  document.getElementById('st-anio').textContent  = deAnio.length;
+  document.getElementById('st-pend').textContent  = pend.length;
+  document.getElementById('st-prox').textContent  = fmtNum(cfg.numero);
+
+  // Resumen año
+  const ra = document.getElementById('st-resumen-anio');
+  if(deAnio.length===0){
+    ra.innerHTML='<div style="color:var(--gray300);text-align:center;padding:16px">Sin registros este año</div>';
+  } else {
+    const comp = deAnio.filter(b=>(b.diagnostico||'').trim()).length;
+    ra.innerHTML=`
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--gray100)">
+          <span style="font-size:13px;color:var(--gray500)">🔬 Biopsias registradas</span>
+          <span style="font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--navy)">${deAnio.length}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--gray100)">
+          <span style="font-size:13px;color:var(--gray500)">✅ Con diagnóstico</span>
+          <span style="font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--green)">${comp}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0">
+          <span style="font-size:13px;color:var(--gray500)">⏳ Pendientes</span>
+          <span style="font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--amber)">${deAnio.filter(b=>!(b.diagnostico||'').trim()).length}</span>
+        </div>
+      </div>`;
+  }
+
+  // Pendientes
+  const pl = document.getElementById('st-pend-list');
+  if(!pend.length){
+    pl.innerHTML='<div style="color:var(--gray300);text-align:center;padding:16px">✅ Sin pendientes</div>';
+  } else {
+    pl.innerHTML = pend.map(b=>`
+      <div onclick="verBiopsia(${b.id})" style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#fef3c7;border:1px solid #fcd34d;border-radius:7px;cursor:pointer;margin-bottom:6px">
+        <div>
+          <span style="font-family:var(--font-serif);font-weight:700;color:var(--navy);font-size:15px">${b.codigo}</span>
+          <span style="font-size:13px;color:var(--gray500);margin-left:10px">${b.paciente}</span>
+        </div>
+        <span style="font-size:11px;color:var(--amber)">${fmtF(b.fecha)}</span>
+      </div>`).join('');
+  }
+}
+
+// ══ EXPORTAR CSV ══
+function exportCSV(){
+  if(!biopsias.length){ toast('No hay biopsias para exportar','err'); return; }
+  const sorted = biopsias.slice().sort((a,b)=>b.numero-a.numero);
+  const hdr = ['N° Protocolo','Fecha Recepción','Paciente','Edad','Material / Localización','Médico Solicitante','Macroscopía','Microscopía','Diagnóstico'];
+  const rows = sorted.map(b=>[
+    b.codigo, fmtF(b.fecha), b.paciente||'', b.edad||'',
+    b.material||'', b.medico||'',
+    (b.macro||'').replace(/\n/g,' '),
+    (b.micro||'').replace(/\n/g,' '),
+    (b.diagnostico||'').replace(/\n/g,' ')
+  ].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(','));
+  const csv = '\uFEFF' + [hdr.join(','), ...rows].join('\n');
+  dl(csv, 'text/csv', 'biopsias_'+hoy()+'.csv');
+  toast('📤 CSV exportado correctamente','ok');
+}
+
+// ══ IMPORTAR CSV ══
+function importCSV(e){
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try{
+      const lines = ev.target.result.replace(/\r/g,'').split('\n').filter(l=>l.trim());
+      if(lines.length<2){ toast('CSV vacío o inválido','err'); return; }
+      const existentes = new Set(biopsias.map(b=>b.codigo));
+      let imp=0, dup=0;
+      const parseFila = line => {
+        const r=[]; let c='',inq=false;
+        for(let i=0;i<line.length;i++){
+          const ch=line[i];
+          if(ch==='"'&&inq&&line[i+1]==='"'){c+='"';i++;}
+          else if(ch==='"'){inq=!inq;}
+          else if(ch===','&&!inq){r.push(c);c='';}
+          else c+=ch;
+        }
+        r.push(c); return r;
+      };
+      for(let i=1;i<lines.length;i++){
+        const f = parseFila(lines[i]);
+        if(f.length<5) continue;
+        const codigo = (f[0]||'').trim();
+        if(!codigo||existentes.has(codigo)){dup++;continue;}
+        const fParts = (f[1]||'').split('/');
+        const fISO   = fParts.length===3 ? fParts[2]+'-'+fParts[1]+'-'+fParts[0] : '';
+        const num    = parseInt((codigo.split('-')[1])||'0')||0;
+        const b = {
+          id: Date.now()+i, numero: num, codigo,
+          fechaCreacion: new Date().toISOString(),
+          fecha: fISO, paciente: f[2]||'', edad: f[3]||'',
+          material: f[4]||'', medico: f[5]||'',
+          macro: f[6]||'', micro: f[7]||'', diagnostico: f[8]||''
+        };
+        biopsias.unshift(b); existentes.add(codigo); imp++;
+        if(num >= cfg.numero) cfg.numero = num + 1;
+      }
+      save(); renderLista(); updateStats(); updateHdrNext();
+      toast('✅ Importados: '+imp+'. Duplicados omitidos: '+dup, 'ok');
+    }catch(err){ toast('❌ Error al importar: '+err.message,'err'); }
+  };
+  reader.readAsText(file,'UTF-8'); e.target.value='';
+}
+
+// ══ BACKUP ══
+function hacerBackup(){
+  const payload = {v:2, fecha: new Date().toISOString(), cfg, biopsias};
+  dl(JSON.stringify(payload,null,2), 'application/json', 'backup_biopsias_'+hoy()+'.json');
+  localStorage.setItem('bx_last_backup', new Date().toISOString());
+  updateBackupUI();
+  toast('🗄️ Backup guardado correctamente','ok');
+}
+
+function restaurar(e){
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try{
+      if(!confirm('¿Restaurar backup?\n\nEsto REEMPLAZARÁ todos los datos actuales.\n¿Continuar?')) return;
+      const data = JSON.parse(ev.target.result);
+      if(data.cfg)      { cfg      = data.cfg;      save(); cargarCfgUI(); }
+      if(data.biopsias) { biopsias = data.biopsias; save(); renderLista(); updateStats(); }
+      updateHdrNext();
+      if(data.fecha) localStorage.setItem('bx_last_backup', data.fecha);
+      updateBackupUI();
+      toast('✅ Backup restaurado correctamente','ok');
+    }catch(err){ toast('❌ Error al restaurar: '+err.message,'err'); }
+  };
+  reader.readAsText(file); e.target.value='';
+}
+
+function updateBackupUI(){
+  const f   = localStorage.getItem('bx_last_backup');
+  const msg = document.getElementById('backup-msg');
+  const dot = document.getElementById('bdot');
+  if(!f){
+    msg.textContent='Sin backups guardados. Se recomienda hacer uno ahora.';
+    dot.className='bdot none'; return;
+  }
+  const d    = new Date(f);
+  const dias = (Date.now()-d.getTime())/(1000*60*60*24);
+  const lab  = d.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric'}) +
+               ' ' + d.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+  msg.textContent = 'Último backup: ' + lab + (dias>7?' — ⚠️ Hace más de 7 días':'');
+  dot.className = 'bdot ' + (dias>7?'old':'ok');
+}
+
+// ══ CONFIG ══
+function cargarCfgUI(){
+  document.getElementById('cfg-num').value    = cfg.numero;
+  document.getElementById('cfg-nombre').value = cfg.nombre;
+  document.getElementById('cfg-esp').value    = cfg.especialidad;
+  document.getElementById('cfg-inst').value   = cfg.institucion;
+  document.getElementById('cfg-mat').value    = cfg.matricula;
+  document.getElementById('cfg-dir').value    = cfg.direccion;
+  updateFirmaPrev();
+}
+['cfg-nombre','cfg-mat','cfg-esp'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) el.addEventListener('input', updateFirmaPrev);
+});
+function updateFirmaPrev(){
+  const n = document.getElementById('cfg-nombre').value || 'Dra. Alejandra Wernicke';
+  const m = document.getElementById('cfg-mat').value    || 'MN 108790 — MP 551593';
+  const e = document.getElementById('cfg-esp').value    || 'Especialista Universitaria en Anatomía Patológica';
+  document.getElementById('firma-prev').innerHTML =
+    `<div style="font-size:16px;font-weight:700;color:var(--navy);font-family:var(--font-serif)">${n}, MD MSc</div>
+     <div style="font-size:12px;color:var(--gray500);margin-top:3px">${e}</div>
+     <div style="font-size:12px;color:var(--gray500);margin-top:1px">${m}</div>`;
+}
+function guardarCfg(){
+  cfg.numero      = parseInt(document.getElementById('cfg-num').value)||cfg.numero;
+  cfg.nombre      = document.getElementById('cfg-nombre').value;
+  cfg.especialidad= document.getElementById('cfg-esp').value;
+  cfg.institucion = document.getElementById('cfg-inst').value;
+  cfg.matricula   = document.getElementById('cfg-mat').value;
+  cfg.direccion   = document.getElementById('cfg-dir').value;
+  save(); updateHdrNext();
+  toast('✅ Configuración guardada','ok');
+}
+
+// ══ HELPERS ══
+function dl(contenido, tipo, nombre){
+  const blob = new Blob([contenido],{type:tipo});
+  const a    = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = nombre; a.click();
+}
+function nuevaBiopsia(){
+  cancelarEdicion();
+  // Show panel-nuevo without tab
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-nuevo').classList.add('active');
+  document.getElementById('num-display').value = fmtNum(cfg.numero);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function toast(msg, tipo=''){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (tipo==='err'?' err':tipo==='ok'?' ok':'');
+  clearTimeout(t._t);
+  t._t = setTimeout(()=>{ t.className='toast'; }, 3400);
+}
+
+// ════════════════════════════════════════
+// SISTEMA DE PLANTILLAS
+// ════════════════════════════════════════
+let plantillas = {
+  macro: [
+    { id: 't1', nombre: 'Punción de mama',  texto: 'Cinco cilindros de tejido fibroadiposo el mayor mide 1,4 cm de longitud.' },
+    { id: 't2', nombre: 'Vulva',            texto: 'Fragmento de piel de 0,4 x 0,2 cm.' },
+    { id: 't3', nombre: 'Cuello uterino',   texto: 'Dos fragmentos blanquecinos el mayor de 0,4 cm.' },
+  ],
+  micro: [],
+  ihq:   [
+    { id: 'ihq1', nombre: 'Mama — RE/RPg/HER2/Ki67', texto: 'Receptores de Estrógeno (RE): \nReceptores de Progesterona (RPg): \nHER2: \nKi-67: ' },
+    { id: 'ihq2', nombre: 'Endometrio — MMR', texto: 'MLH1: conservado/perdido\nPMS2: conservado/perdido\nMSH2: conservado/perdido\nMSH6: conservado/perdido\np53: patrón ' },
+  ],
+  diag:  []
+};
+
+// Carga desde localStorage (las plantillas del usuario sobreescriben las default)
+(function(){
+  try {
+    const saved = localStorage.getItem('bx_plantillas');
+    if(saved) plantillas = JSON.parse(saved);
+  } catch(e){}
+  // Asegura que existan todas las secciones aunque vengan datos viejos guardados
+  ['macro','micro','ihq','diag'].forEach(s => { if(!plantillas[s]) plantillas[s] = []; });
+  renderPlantillas('macro');
+  renderPlantillas('micro');
+  renderPlantillas('ihq');
+  renderPlantillas('diag');
+})();
+
+function savePlantillas(){
+  localStorage.setItem('bx_plantillas', JSON.stringify(plantillas));
+}
+
+// ── Render lista dentro del dropdown ──
+function renderPlantillas(sec){
+  const list  = document.getElementById('tpl-list-' + sec);
+  const count = document.getElementById('tpl-' + sec + '-count');
+  const items = plantillas[sec] || [];
+  count.textContent = items.length;
+
+  if(!items.length){
+    list.innerHTML = '<div class="tpl-empty">Sin plantillas guardadas.<br>Usá "＋ Nueva plantilla" para agregar.</div>';
+    return;
+  }
+
+  list.innerHTML = '<div class="tpl-items">' + items.map(t => `
+    <div class="tpl-item">
+      <div class="tpl-item-body" onclick="insertarPlantilla('${sec}','${t.id}')">
+        <div class="tpl-item-name">${escHtml(t.nombre)}</div>
+        <div class="tpl-item-preview">${escHtml(t.texto)}</div>
+      </div>
+      <div class="tpl-item-actions">
+        <button class="tpl-icon-btn" title="Editar" onclick="event.stopPropagation();abrirEditorPlantilla('${sec}','${t.id}')">✏️</button>
+        <button class="tpl-icon-btn del" title="Eliminar" onclick="event.stopPropagation();eliminarPlantilla('${sec}','${t.id}')">🗑</button>
+      </div>
+    </div>`).join('') + '</div>';
+}
+
+// ── Abrir / cerrar dropdown ──
+function toggleTpl(sec, e){
+  e.stopPropagation();
+  const menu = document.getElementById('tpl-menu-' + sec);
+  // Cierra todos los otros menús abiertos
+  document.querySelectorAll('.tpl-menu').forEach(m => { if(m !== menu) m.classList.remove('open'); });
+  menu.classList.toggle('open');
+}
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.tpl-wrap'))
+    document.querySelectorAll('.tpl-menu').forEach(m => m.classList.remove('open'));
+});
+
+// ── Insertar plantilla en el campo ──
+function insertarPlantilla(sec, id){
+  const tpl = (plantillas[sec]||[]).find(t => t.id === id);
+  if(!tpl) return;
+  const field = document.getElementById('f-' + sec);
+  const cur   = field.value;
+  field.value = cur ? cur + (cur.endsWith('\n') ? '' : '\n') + tpl.texto : tpl.texto;
+  field.focus();
+  field.setSelectionRange(field.value.length, field.value.length);
+  document.getElementById('tpl-menu-' + sec).classList.remove('open');
+  toast('Plantilla "' + tpl.nombre + '" insertada', 'ok');
+}
+
+// ── Editor de plantilla (nueva o editar existente) ──
+let _tplEditorSec = null;
+let _tplEditorId  = null;
+
+function abrirEditorPlantilla(sec, id){
+  _tplEditorSec = sec;
+  _tplEditorId  = id || null;
+  document.querySelectorAll('.tpl-menu').forEach(m => m.classList.remove('open'));
+
+  const tpl = id ? (plantillas[sec]||[]).find(t => t.id === id) : null;
+  const secNombre = { macro:'Macroscopía', micro:'Microscopía', ihq:'Inmunohistoquímica', diag:'Diagnóstico' }[sec] || sec;
+  const titulo = tpl ? 'Editar plantilla' : 'Nueva plantilla de ' + secNombre;
+
+  document.getElementById('tpl-edit-title').textContent = titulo;
+  document.getElementById('tpl-edit-nombre').value = tpl ? tpl.nombre : '';
+  document.getElementById('tpl-edit-texto').value  = tpl ? tpl.texto  : '';
+  document.getElementById('tpl-modal').classList.add('open');
+  setTimeout(()=>document.getElementById('tpl-edit-nombre').focus(), 80);
+}
+
+function nuevaPlantilla(sec){
+  abrirEditorPlantilla(sec, null);
+}
+
+function cerrarEditorPlantilla(){
+  document.getElementById('tpl-modal').classList.remove('open');
+  _tplEditorSec = null;
+  _tplEditorId  = null;
+}
+
+function guardarEdicionPlantilla(){
+  const nombre = document.getElementById('tpl-edit-nombre').value.trim();
+  const texto  = document.getElementById('tpl-edit-texto').value.trim();
+  if(!nombre){ toast('⚠️ Ingresá un nombre para la plantilla', 'err'); return; }
+  if(!texto) { toast('⚠️ Ingresá el texto de la plantilla', 'err');   return; }
+  const sec = _tplEditorSec;
+  if(!plantillas[sec]) plantillas[sec] = [];
+
+  if(_tplEditorId){
+    // Editar existente
+    const idx = plantillas[sec].findIndex(t => t.id === _tplEditorId);
+    if(idx !== -1){ plantillas[sec][idx].nombre = nombre; plantillas[sec][idx].texto = texto; }
+    toast('Plantilla "' + nombre + '" actualizada', 'ok');
+  } else {
+    // Nueva
+    plantillas[sec].push({ id: 'u_' + Date.now(), nombre, texto });
+    toast('Plantilla "' + nombre + '" guardada', 'ok');
+  }
+  savePlantillas();
+  renderPlantillas(sec);
+  cerrarEditorPlantilla();
+}
+
+function eliminarPlantilla(sec, id){
+  const tpl = (plantillas[sec]||[]).find(t => t.id === id);
+  if(!confirm('¿Eliminar la plantilla "' + (tpl?tpl.nombre:'') + '"?')) return;
+  plantillas[sec] = (plantillas[sec]||[]).filter(t => t.id !== id);
+  savePlantillas();
+  renderPlantillas(sec);
+  toast('Plantilla eliminada');
+}
+
+// Tecla Escape cierra editor
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') cerrarEditorPlantilla();
+});
+
+function escHtml(s){
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ════════════════════════════════════════
+// GOOGLE DRIVE INTEGRATION
+// ════════════════════════════════════════
+const DRIVE_CLIENT_ID = '277458723762-uv0oc44qek840jv3kgd4006fb87q3pu9.apps.googleusercontent.com';
+const DRIVE_SCOPE     = 'https://www.googleapis.com/auth/drive.file';
+let driveAccessToken  = null;
+
+function obtenerTokenDrive(callback){
+  // Resetear siempre para forzar el selector de cuenta cada vez
+  driveAccessToken = null;
+  const client = google.accounts.oauth2.initTokenClient({
+    client_id: DRIVE_CLIENT_ID,
+    scope: DRIVE_SCOPE,
+    prompt: 'select_account',
+    callback: (resp) => {
+      if(resp.error){ toast('❌ Error al autenticar con Google', 'err'); return; }
+      driveAccessToken = resp.access_token;
+      callback(driveAccessToken);
+    }
+  });
+  client.requestAccessToken();
+}
+
+async function enviarADrive(){
+  if(!modalId && !document.getElementById('f-paciente').value.trim()){
+    toast('⚠️ No hay informe abierto', 'err'); return;
+  }
+
+  const btn = document.getElementById('btn-drive');
+  btn.disabled = true;
+  btn.textContent = '⏳ Generando PDF...';
+
+  try {
+    // Obtener HTML del reporte
+    const reporteEl = document.getElementById('modal-body');
+    
+    // Generar PDF con html2canvas + jsPDF
+    const { jsPDF } = window.jspdf;
+    const canvas = await html2canvas(reporteEl, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: '#ffffff',
+      logging: false
+    });
+
+    const imgData  = canvas.toDataURL('image/jpeg', 0.92);
+    const pdf      = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const pageW    = pdf.internal.pageSize.getWidth();
+    const pageH    = pdf.internal.pageSize.getHeight();
+    const imgW     = pageW;
+    const imgH     = (canvas.height * pageW) / canvas.width;
+    let posY       = 0;
+    let remaining  = imgH;
+
+    // Paginar si el contenido supera una hoja
+    while(remaining > 0){
+      pdf.addImage(imgData, 'JPEG', 0, posY, imgW, imgH);
+      remaining -= pageH;
+      posY      -= pageH;
+      if(remaining > 0) pdf.addPage();
+    }
+
+    const pdfBlob = pdf.output('blob');
+
+    // Obtener nombre del paciente para el archivo
+    let nombrePaciente = 'Informe';
+    if(modalId){
+      const b = biopsias.find(x => x.id === modalId);
+      if(b) nombrePaciente = b.codigo + '_' + (b.paciente||'paciente').replace(/[^a-zA-Z0-9áéíóúñÁÉÍÓÚÑ\s]/g,'').trim();
+    } else {
+      const pac = document.getElementById('f-paciente').value.trim();
+      const num = document.getElementById('num-display').value;
+      nombrePaciente = num + '_' + pac.replace(/[^a-zA-Z0-9áéíóúñÁÉÍÓÚÑ\s]/g,'').trim();
+    }
+    const fileName = nombrePaciente + '.pdf';
+
+    btn.textContent = '⏳ Conectando con Drive...';
+
+    // Autenticar y subir
+    obtenerTokenDrive(async (token) => {
+      try {
+        // Primero buscar o crear carpeta "Biopsias Wernicke"
+        const folderName = 'Biopsias Wernicke';
+        const searchResp = await fetch(
+          `https://www.googleapis.com/drive/v3/files?q=name='${folderName}'+and+mimeType='application/vnd.google-apps.folder'+and+trashed=false&fields=files(id,name)`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        const searchData = await searchResp.json();
+        let folderId;
+
+        if(searchData.files && searchData.files.length > 0){
+          folderId = searchData.files[0].id;
+        } else {
+          // Crear la carpeta
+          const folderResp = await fetch('https://www.googleapis.com/drive/v3/files', {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: folderName, mimeType: 'application/vnd.google-apps.folder' })
+          });
+          const folderData = await folderResp.json();
+          folderId = folderData.id;
+        }
+
+        // Subir el PDF a la carpeta
+        const metadata = { name: fileName, mimeType: 'application/pdf', parents: [folderId] };
+        const form = new FormData();
+        form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+        form.append('file', pdfBlob);
+
+        const uploadResp = await fetch(
+          'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,name,webViewLink',
+          { method: 'POST', headers: { Authorization: `Bearer ${token}` }, body: form }
+        );
+        const uploadData = await uploadResp.json();
+
+        if(uploadData.id){
+          toast('✅ PDF subido a Drive: ' + uploadData.name, 'ok');
+          // Abrir en Drive
+          if(uploadData.webViewLink){
+            setTimeout(()=>{ window.open(uploadData.webViewLink, '_blank'); }, 800);
+          }
+        } else {
+          toast('❌ Error al subir a Drive', 'err');
+          console.error(uploadData);
+        }
+      } catch(err){
+        toast('❌ Error al subir: ' + err.message, 'err');
+        console.error(err);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<svg style="width:15px;height:15px;flex-shrink:0" viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/></svg> Enviar a Drive`;
+      }
+    });
+
+  } catch(err){
+    toast('❌ Error al generar PDF: ' + err.message, 'err');
+    btn.disabled = false;
+    btn.textContent = 'Enviar a Drive';
+  }
+}
+
+</script>
+</body>
+</html>
