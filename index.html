@@ -496,6 +496,31 @@ mark { background: #fde68a; border-radius: 2px; padding: 0 2px; }
 .rp-numbox .rp-tipo { font-size: 10px; font-weight: 700; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 3px; }
 .rp-numbox .rp-fecha { font-size: 10px; color: #888; margin-top: 4px; }
 /* Tabla datos */
+.rp-data-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+  margin-bottom: 16px;
+}
+.rp-data-item {
+  display: flex;
+  align-items: baseline;
+  padding: 5px 0;
+  border-bottom: 1px solid #eef;
+  gap: 10px;
+}
+.rp-data-item .rp-data-label {
+  font-size: 8px; color: #888; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .5px;
+  white-space: nowrap; min-width: 90px; flex-shrink: 0;
+}
+.rp-data-item .rp-data-val {
+  font-size: 11px; color: #1a1a2e;
+}
+.rp-data-item .rp-data-val strong { font-size: 12px; }
+.rp-data-item-full {
+  grid-column: 1 / -1;
+}
 .rp-data-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
 .rp-data-table th {
   background: var(--navy); color: var(--white);
@@ -812,6 +837,16 @@ mark { background: #fde68a; border-radius: 2px; padding: 0 2px; }
         </div>
       </div>
       <textarea id="f-micro" rows="5" placeholder="Hallazgos histológicos. Arquitectura tisular, características celulares, tinción H&E..."></textarea>
+    </div>
+
+    <div class="sec-label">Inmunohistoquímica</div>
+    <div class="fg">
+      <label>Inmunohistoquímica</label>
+      <div style="background:var(--gray100);border:1px solid var(--gray200);border-radius:var(--radius);padding:12px 14px;font-size:13px;color:var(--gray500);line-height:1.6;margin-bottom:8px;">
+        <strong style="color:var(--navy);display:block;margin-bottom:4px;">Texto fijo del informe:</strong>
+        Se realiza tecnica de inmunohistoquimica en sistema automatizado BenchmarkXT Ventana Medical Systems. Tucson AZ. Método de revelado: UltraView Universal DAB Kit. OptiView DAB IHC Detection Kit según protocolos de la Institución.
+      </div>
+      <textarea id="f-ihq" rows="4" placeholder="Agregue aquí los anticuerpos, clones y resultados específicos de este caso..."></textarea>
     </div>
 
     <div class="sec-label">Diagnóstico</div>
@@ -1147,6 +1182,7 @@ function guardar(){
     material:         gv('f-material'),
     macro:            gv('f-macro'),
     micro:            gv('f-micro'),
+    ihq:              gv('f-ihq'),
     diagnostico:      gv('f-diag'),
   };
 
@@ -1262,18 +1298,41 @@ function buildReporte(b){
 
     <div class="rp-sec">
       <div class="rp-sec-title">Datos del Estudio</div>
-      <table class="rp-data-table">
-        <tr><td>Protocolo N°</td><td><strong>${b.codigo}</strong></td></tr>
-        <tr><td>Fecha de Recepción</td><td>${fmtF(b.fecha)}</td></tr>
-        <tr><td>Paciente</td><td><strong>${dv(b.paciente)}</strong></td></tr>
-        <tr><td>Edad</td><td>${b.edad ? b.edad + ' años' : '—'}</td></tr>
-        <tr><td>Médico Solicitante</td><td>${dv(b.medico)}</td></tr>
-        <tr><td>Material Remitido</td><td>${dv(b.material)}</td></tr>
-      </table>
+      <div class="rp-data-grid">
+        <div class="rp-data-item">
+          <span class="rp-data-label">Protocolo N°</span>
+          <span class="rp-data-val"><strong>${b.codigo}</strong></span>
+        </div>
+        <div class="rp-data-item">
+          <span class="rp-data-label">Fecha de Recepción</span>
+          <span class="rp-data-val">${fmtF(b.fecha)}</span>
+        </div>
+        <div class="rp-data-item">
+          <span class="rp-data-label">Paciente</span>
+          <span class="rp-data-val"><strong>${dv(b.paciente)}</strong></span>
+        </div>
+        <div class="rp-data-item">
+          <span class="rp-data-label">Edad</span>
+          <span class="rp-data-val">${b.edad ? b.edad + ' años' : '—'}</span>
+        </div>
+        <div class="rp-data-item">
+          <span class="rp-data-label">Médico Solicitante</span>
+          <span class="rp-data-val">${dv(b.medico)}</span>
+        </div>
+        <div class="rp-data-item rp-data-item-full">
+          <span class="rp-data-label">Material Remitido</span>
+          <span class="rp-data-val">${dv(b.material)}</span>
+        </div>
+      </div>
     </div>
 
     ${b.macro ? `<div class="rp-sec"><div class="rp-sec-title">Macroscopía</div><div class="rp-text">${nl(b.macro)}</div></div>` : ''}
     ${b.micro ? `<div class="rp-sec"><div class="rp-sec-title">Microscopía</div><div class="rp-text">${nl(b.micro)}</div></div>` : ''}
+    <div class="rp-sec">
+      <div class="rp-sec-title">Inmunohistoquímica</div>
+      <div class="rp-text" style="font-style:italic;color:#555;">Se realiza tecnica de inmunohistoquimica en sistema automatizado BenchmarkXT Ventana Medical Systems. Tucson AZ. Método de revelado: UltraView Universal DAB Kit. OptiView DAB IHC Detection Kit según protocolos de la Institución.</div>
+      ${b.ihq ? `<div class="rp-text" style="margin-top:6px;">${nl(b.ihq)}</div>` : ''}
+    </div>
 
     <div class="rp-sec">
       <div class="rp-sec-title">Diagnóstico Anatomopatológico</div>
