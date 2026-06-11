@@ -1234,7 +1234,7 @@ function cancelarEdicion(){
   document.getElementById('edit-badge').classList.remove('show');
   document.getElementById('btn-guardar').textContent = '💾 Guardar Biopsia';
   document.getElementById('num-display').value = fmtNum(cfg.numero);
-  ['f-paciente','f-edad','f-medico','f-material','f-macro','f-micro','f-diag'].forEach(id=>{
+  ['f-paciente','f-edad','f-medico','f-material','f-macro','f-micro','f-ihq','f-diag'].forEach(id=>{
     const e=document.getElementById(id); if(e) e.value='';
   });
   setFechaHoy();
